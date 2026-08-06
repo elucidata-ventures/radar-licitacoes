@@ -74,6 +74,13 @@
     display:flex;flex-direction:column
   }
   .card h3{margin:0 0 8px;font-size:15.5px;color:var(--ink)}
+  .st{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.09em;
+    text-transform:uppercase;border-radius:5px;padding:3px 8px;margin-bottom:9px}
+  .st.st-on{background:#0f2a1e;color:#4de3a2;border:1px solid #1f5e42}
+  .st.st-hoje{background:#2e2408;color:var(--warn);border:1px solid #5c4a14}
+  .st.st-off{background:#241417;color:#ff8f9b;border:1px solid #4d2229}
+  .card.st-off{opacity:.82}
+  .card.st-off dd{color:var(--ink2)}
   .card .meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12.5px;color:var(--ink3);margin-bottom:12px}
   .card .uf{
     background:#1d3a4d;color:#9fe6ff;border-radius:5px;padding:1px 7px;font-weight:700;
@@ -171,7 +178,8 @@
     <div class="pricepill"><b>R$ 149</b><span>/mês · mês a mês, cancela quando quiser</span></div>
     <div><a class="cta" href="#quero">Quero por R$149/mês</a></div>
     <ul class="bullets">
-      <li>Rola a página: os <strong>24 editais abaixo são reais</strong> e saíram desse pipeline.</li>
+      <li>Rola a página: os <strong>24 editais abaixo são reais</strong>, saíram desse pipeline —
+        e <strong>24 deles já fecharam</strong>, o que é justamente o argumento do produto.</li>
       <li>Dado público do PNCP, creditado edital por edital, com link para a origem.</li>
       <li>Sua assinatura é a nossa única fonte de receita — não vendemos nada por cima do alerta.</li>
     </ul>
@@ -182,32 +190,55 @@
 <section id="editais">
   <div class="wrap">
     <span class="kicker">Amostra real, não mockup</span>
-    <h2>Editais com proposta aberta — o que o radar achou nesta rodada</h2>
+    <h2>A última rodada do radar — e por que ela já venceu</h2>
     <p class="sub">
-      Esta é a saída bruta de uma execução real do pipeline, não um exemplo inventado.
-      Cada card traz o órgão, onde fica, o valor estimado quando o órgão publica, o prazo de proposta,
-      o resumo automático do objeto e o link para o edital na origem.
+      Esta é a saída bruta de uma execução real do pipeline, não um exemplo inventado. Cada card traz o
+      órgão, onde fica, o valor estimado quando o órgão publica, o prazo de proposta, o resumo do objeto
+      e o link para o edital na origem. <strong>Cada card também diz, em cima, se ainda está aberto ou se
+      já encerrou</strong> — conferido no momento em que esta página foi gerada.
     </p>
 
     <div class="feedbar">
-      <span>Feed gerado em <b>05/ago/2026 às 16:51h</b></span>
-      <span>Contratações varridas no PNCP: <b>11.098</b></span>
-      <span>Candidatos do nicho encontrados: <b>293</b> (EPIs/uniformes) e <b>405</b> (alimentícios)</span>
-      <span>Nesta amostra: <b>24</b> editais</span>
+      <span>Feed coletado do PNCP em <b>05/ago/2026 às 16:51h</b></span>
+      <span>Página conferida e gerada em <b>06/ago/2026 às 12:58h</b></span>
+      <span>Estado agora: <b>0</b> ainda abertos · <b>24</b> já encerrados</span>
+      <span>Atualização prevista no serviço: <b>diária</b></span>
+    </div>
+
+    <div class="honesto" style="margin:0 0 26px">
+      <h3>Leia isto antes de olhar os cards — é o melhor argumento que temos</h3>
+      <p>
+        Este feed foi coletado em <strong>05/ago/2026 às 16:51h</strong> e conferido de novo agora, em
+        <strong>06/ago/2026 às 12:58h</strong>. Nesse intervalo, <strong>24 dos 24 editais
+        já encerraram o prazo de proposta</strong> — os cards marcados em vermelho. Não maquiamos:
+        estão aqui, com o selo de encerrado, porque são a prova do problema.
+      </p>
+      <p>
+        É esse o ponto. A janela de proposta desses editais (sobretudo nas dispensas eletrônicas) dura
+        poucos dias, às vezes menos. Quem só entra num portal "quando lembra" não perde o edital por
+        falta de acesso ao dado — o dado é público e gratuito. Perde por <strong>atraso</strong>.
+        Por isso o produto é <strong>alerta diário empurrado</strong> para o seu e-mail e WhatsApp, e
+        não mais um portal esperando a sua visita.
+      </p>
+      <p>
+        Enquanto medimos a demanda, esta página é atualizada manualmente e o feed aqui pode estar
+        vencido. <strong>Confira sempre no link da origem antes de decidir participar.</strong>
+      </p>
     </div>
 
     <p class="muted">
-      Atenção honesta: este é um <strong>snapshot</strong> daquele horário, publicado como demonstração.
-      Vários desses prazos são curtos e podem já ter encerrado quando você ler — é exatamente o problema
-      que o alerta diário resolve. Confira sempre no link da origem antes de decidir participar.
+      Contexto do que foi varrido nesta coleta: <b>11.098</b> contratações no PNCP,
+      <b>293</b> candidatas do nicho de EPIs/uniformes e <b>405</b> de gêneros
+      alimentícios; ficaram nesta amostra os <b>24</b> de encerramento mais próximo.
     </p>
 
     <div class="nicho">
       <h3 class="nh">EPIs, uniformes e vestuário profissional</h3>
       <p class="cnt">12 editais nesta amostra · 293 contratações do nicho localizadas na varredura</p>
       <div class="grid">
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Municipio De Quixeramobim</h3>
           <div class="meta">
             <span class="uf">CE</span>
@@ -227,8 +258,9 @@
           <a class="lnk" href="http://www.licitacaoquixeramobim.com.br" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Municipio De Xambre</h3>
           <div class="meta">
             <span class="uf">PR</span>
@@ -248,8 +280,9 @@
           <a class="lnk" href="https://bllcompras.com/Process/ProcessView?param1=[gkz]GlyuQEtjv4HOU2bmax9bg8cvb7jb0vUOJ5WmSIngqdpryGu5df4GbYlK2DxR8vMSU8I0LPyhRo2Ej7Hoc5tyty2yEp8OMIAbpjQXdqV9pTM=" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Municipio De Cristais Paulista</h3>
           <div class="meta">
             <span class="uf">SP</span>
@@ -269,8 +302,9 @@
           <a class="lnk" href="https://pncp.gov.br/app/editais/45307980000108/2026/90" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Fundacao Cultural De Rio Do Sul</h3>
           <div class="meta">
             <span class="uf">SC</span>
@@ -290,8 +324,9 @@
           <a class="lnk" href="https://pncp.gov.br/app/editais/81162588000181/2026/16" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Municipio De Rio Do Sul</h3>
           <div class="meta">
             <span class="uf">SC</span>
@@ -311,8 +346,9 @@
           <a class="lnk" href="https://comprasbr.com.br/pregao-eletronico-detalhe/?idlicitacao=46980" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Municipio De Casa Nova</h3>
           <div class="meta">
             <span class="uf">BA</span>
@@ -332,8 +368,9 @@
           <a class="lnk" href="https://bllcompras.com/Process/ProcessView?param1=[gkz]abU0gEABOQNXDdjGzgff81m02Ga7kmTZcx27xaHEmS5rXFI4ijaEtvxGMjntZFA8ipU4JsGu73b05wYjTUTRlvm1iliXTr4mSWmJmJLeSok=" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Secretaria De Estado Da Saude</h3>
           <div class="meta">
             <span class="uf">SP</span>
@@ -353,8 +390,9 @@
           <a class="lnk" href="https://cnetmobile.estaleiro.serpro.gov.br/comprasnet-web/public/compras/acompanhamento-compra?compra=09015705003682026" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Municipio De Rio De Janeiro</h3>
           <div class="meta">
             <span class="uf">RJ</span>
@@ -374,8 +412,9 @@
           <a class="lnk" href="https://cnetmobile.estaleiro.serpro.gov.br/comprasnet-web/public/compras/acompanhamento-compra?compra=98600105000772027" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Municipio De Sao Ludgero</h3>
           <div class="meta">
             <span class="uf">SC</span>
@@ -395,8 +434,9 @@
           <a class="lnk" href="https://www.portaldecompraspublicas.com.br/processos/SC/Prefeitura-Municipal-de-Sao-Ludgero-3953/RPE-33-2026-2026-498732" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Municipio De Sao Ludgero</h3>
           <div class="meta">
             <span class="uf">SC</span>
@@ -416,8 +456,9 @@
           <a class="lnk" href="https://pncp.gov.br/app/editais/82926536000105/2026/122" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Municipio De Marlieria</h3>
           <div class="meta">
             <span class="uf">MG</span>
@@ -437,8 +478,9 @@
           <a class="lnk" href="https://app2.licitardigital.com.br/pesquisa/108483" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Empresa De Trens Urbanos De Porto Alegre S/A</h3>
           <div class="meta">
             <span class="uf">RS</span>
@@ -465,8 +507,9 @@
       <h3 class="nh">Gêneros alimentícios e merenda escolar</h3>
       <p class="cnt">12 editais nesta amostra · 405 contratações do nicho localizadas na varredura</p>
       <div class="grid">
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Municipio De Nova Santa Rita</h3>
           <div class="meta">
             <span class="uf">PI</span>
@@ -486,8 +529,9 @@
           <a class="lnk" href="https://www.portaldecompraspublicas.com.br/processos/PI/Prefeitura-Municipal-de-Nova-Santa-Rita-2821/PE-010-2026-2026-499209" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Fundo Municipal De Educacao De Neropolis - Fme</h3>
           <div class="meta">
             <span class="uf">GO</span>
@@ -507,8 +551,9 @@
           <a class="lnk" href="https://pncp.gov.br/app/editais/24121284000132/2026/19" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Municipio De Delmiro Gouveia</h3>
           <div class="meta">
             <span class="uf">AL</span>
@@ -528,8 +573,9 @@
           <a class="lnk" href="https://licitanet.com.br/sessao/194253" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Sao Paulo Secretaria Da Administracao Penitenciaria</h3>
           <div class="meta">
             <span class="uf">SP</span>
@@ -549,8 +595,9 @@
           <a class="lnk" href="https://cnetmobile.estaleiro.serpro.gov.br/comprasnet-web/public/compras/acompanhamento-compra?compra=38026105001682026" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Municipio De Prado</h3>
           <div class="meta">
             <span class="uf">BA</span>
@@ -570,8 +617,9 @@
           <a class="lnk" href="https://bllcompras.com/Process/ProcessView?param1=[gkz]R_56FzL_fd6ygCGIS0A240z6QOQDXbUpKLYnDmfU7ZwGEdSYuOX5P7qIhiygQZC2VYnWDYl8jGxsGgLeRTBHJ4Lxc/LGN5xTB0ZunK30imY=" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Municipio De Amambai</h3>
           <div class="meta">
             <span class="uf">MS</span>
@@ -591,8 +639,9 @@
           <a class="lnk" href="https://bllcompras.com/Process/ProcessView?param1=[gkz]1UZWiYJ3dovUWlYbqJf/DlkYfhxh94nUr2dIXPOhccNjTor6uYVeR9hNoy67Y4zBYTxQT765Ae9S7mhtxk2j/qOwnr/rkI/QqQa5AB83LBA=" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Fundo Municipal De Educacao</h3>
           <div class="meta">
             <span class="uf">PE</span>
@@ -612,8 +661,9 @@
           <a class="lnk" href="https://bnccompras.com/Process/ProcessView?param1=[gkz]HigwuvgFrmCNP/N9e70OhLvJl1_8uEZo6SsxbvHxPllr9wRSwtlo9u1jJaWTDJ4pKQxUzpr9f7ZyC2f5ZgtVDH2Or/YU8lJTaJHNwZAcHlI=" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Municipio De Tumiritinga</h3>
           <div class="meta">
             <span class="uf">MG</span>
@@ -633,8 +683,9 @@
           <a class="lnk" href="https://app2.licitardigital.com.br/pesquisa/108360" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Municipio De Araras</h3>
           <div class="meta">
             <span class="uf">SP</span>
@@ -654,8 +705,9 @@
           <a class="lnk" href="http://www.comprasararas.com.br" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Municipio De Aricanduva</h3>
           <div class="meta">
             <span class="uf">MG</span>
@@ -675,8 +727,9 @@
           <a class="lnk" href="https://www.portaldecompraspublicas.com.br/processos/MG/Prefeitura-Municipal-de-Aricanduva-1639/PE-000019-2026-2026-498796" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Municipio De Cristopolis</h3>
           <div class="meta">
             <span class="uf">BA</span>
@@ -696,8 +749,9 @@
           <a class="lnk" href="https://bllcompras.com/Process/ProcessView?param1=[gkz]sJjeMtMwmiThYbslQXByoL/NAk3R15tTFHp6O2vjXb3E2GyKeT22Rdyyup2aY/OsyWxfO4taGDe1XczDSCGHp7wJTF5pnulYon5nyydB1a0=" target="_blank" rel="noopener nofollow">abrir o edital na origem &rarr;</a>
         </footer>
       </article>
-      <article class="card">
+      <article class="card st-off">
         <header>
+          <span class="st st-off">encerrado</span>
           <h3>Municipio De Leopolis</h3>
           <div class="meta">
             <span class="uf">PR</span>
@@ -738,8 +792,9 @@
         <div class="num">01</div>
         <h3>Chega em você, não te espera num portal</h3>
         <p>É push: e-mail e WhatsApp, todo dia, com o que abriu no seu nicho. Nada de lembrar de entrar
-        num painel, filtrar de novo e conferir se apareceu algo. Se não abriu nada relevante, você
-        recebe isso dito com essas palavras.</p>
+        num painel, filtrar de novo e conferir se apareceu algo. Olhe os cards acima: os prazos morrem
+        em poucos dias — a diferença entre disputar e não disputar é ficar sabendo no dia. Se não abriu
+        nada relevante, você recebe isso dito com essas palavras.</p>
       </div>
       <div class="eixo">
         <div class="num">02</div>
@@ -878,7 +933,8 @@
     <p>Todos os editais mostrados vêm do <strong>PNCP — Portal Nacional de Contratações Públicas</strong>
     (dado público). Não temos vínculo com o PNCP nem com nenhum órgão público. Resumos são gerados
     automaticamente: o documento oficial é sempre o edital na origem.</p>
-    <p>Feed desta página gerado em 05/ago/2026 às 16:51h.</p>
+    <p>Feed coletado do PNCP em 05/ago/2026 às 16:51h · página gerada e conferida em 06/ago/2026 às 12:58h ·
+    0 editais ainda abertos e 24 encerrados neste momento.</p>
   </div>
 </footer>
 
