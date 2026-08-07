@@ -136,11 +136,14 @@
   .field{margin:0 0 18px;max-width:560px}
   label{display:block;font-weight:600;font-size:14.5px;margin-bottom:5px}
   .hint{font-size:13px;color:var(--ink3);margin:0 0 7px}
-  input[type=text],select,textarea{
+  input[type=text],input[type=email],input[type=tel],select,textarea{
     width:100%;background:#0d151d;border:1px solid var(--line);color:var(--ink);
     border-radius:10px;padding:12px 13px;font:inherit;font-size:15px
   }
-  input[type=text]:focus,select:focus,textarea:focus{outline:2px solid var(--acc2);border-color:var(--acc2)}
+  input[type=text]:focus,input[type=email]:focus,input[type=tel]:focus,select:focus,textarea:focus{
+    outline:2px solid var(--acc2);border-color:var(--acc2)}
+  .votosec{background:var(--bg2);border-top:1px solid var(--line)}
+  .votosec h2{font-size:24px}
   .ufs{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
   .ufs button{
     background:#0d151d;border:1px solid var(--line);color:var(--ink2);border-radius:8px;
@@ -862,14 +865,98 @@
   </div>
 </section>
 
-<!-- ================= WIDGET DE INTENÇÃO (métrica do Gate 1) ================= -->
+<!-- ================= PRÉ-CADASTRO (canal primário · métrica do Gate 1) ================= -->
 <section class="formsec" id="quero">
   <div class="wrap">
-    <span class="kicker">Envio anônimo · nada é cobrado</span>
+    <span class="kicker">Pré-cadastro · nada é cobrado</span>
     <h2>Quero receber por R$149/mês</h2>
     <p class="sub">
-      Três toques. Diga o seu nicho, marque as UFs onde você disputa e confirme que o preço faz sentido.
-      É essa contagem que decide se o radar vai ao ar — e para quais estados ele começa.
+      Um minuto. Diga o seu nicho e a sua UF e responda se R$149/mês faz sentido para você —
+      inclusive se a resposta for "só se for mais barato". É essa contagem que decide se o radar
+      vai ao ar, para quais nichos e a que preço. O e-mail é o que nos permite avisar você no dia
+      em que ligar.
+    </p>
+
+    <form id="lead-form" method="POST" action="https://captura.elucidata.vc/v1/g001-01" accept-charset="utf-8">
+      <input type="hidden" name="_form" value="1">
+      <input type="hidden" name="origem" id="l-origem" value="landing">
+      <div style="position:absolute;left:-9999px" aria-hidden="true"><input name="_hp" tabindex="-1" autocomplete="off"></div>
+
+      <div class="field">
+        <label for="l-nome">Seu nome</label>
+        <input type="text" id="l-nome" name="nome" maxlength="80" autocomplete="name" required placeholder="como devemos te chamar">
+      </div>
+
+      <div class="field">
+        <label for="l-email">E-mail para receber os alertas</label>
+        <p class="hint">De preferência o e-mail da empresa. Usamos para avisar quando o radar ligar — nada mais.</p>
+        <input type="email" id="l-email" name="email" maxlength="120" autocomplete="email" required placeholder="voce@suaempresa.com.br">
+      </div>
+
+      <div class="field">
+        <label for="l-empresa">Empresa <span class="hint" style="display:inline">(opcional)</span></label>
+        <p class="hint">Só o nome. Não pedimos CNPJ, documento nem dado financeiro.</p>
+        <input type="text" id="l-empresa" name="empresa" maxlength="80" autocomplete="organization">
+      </div>
+
+      <div class="field">
+        <label for="l-nicho">O que a sua empresa fornece?</label>
+        <select id="l-nicho" name="nicho" required>
+          <option value="">Selecione…</option>
+          <option>EPIs, uniformes e vestuário profissional</option>
+          <option>Gêneros alimentícios / merenda escolar</option>
+          <option>Outro nicho</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="l-uf">UF onde você mais disputa licitação</label>
+        <select id="l-uf" name="uf" required>
+          <option value="">Selecione…</option>
+          <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option>
+          <option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option>
+          <option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option>
+          <option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+          <option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option>
+          <option>SE</option><option>TO</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="l-aceite">R$149/mês, mês a mês, faz sentido para você?</label>
+        <p class="hint">Responda o que é verdade. "Só se for mais barato" também é resposta útil — é ela que nos diz que o preço está errado.</p>
+        <select id="l-aceite" name="aceite_preco" required>
+          <option value="">Selecione…</option>
+          <option>Sim, R$149/mês faz sentido</option>
+          <option>Só se for mais barato</option>
+          <option>Quero testar antes de decidir</option>
+        </select>
+      </div>
+
+      <button type="submit" class="cta" id="l-btn">Quero por R$149/mês</button>
+      <div id="l-out" aria-live="polite"></div>
+    </form>
+
+    <div class="note">
+      <strong>O que fica guardado.</strong> Nome, e-mail, empresa (se você escrever), nicho, UF e a sua
+      resposta sobre o preço — nada além. Sem CPF, sem CNPJ, sem dado financeiro, sem cartão. Não vendemos
+      nem compartilhamos a lista, e não existe cobrança possível nesta página. Para apagar o seu cadastro,
+      escreva para <a href="mailto:g001-01@elucidata.vc" style="color:var(--acc)">g001-01@elucidata.vc</a>:
+      apagamos e confirmamos. Não há cookie, pixel ou tracker de terceiros aqui.
+      Não quer deixar contato? Há um <a href="#voto" style="color:var(--acc)">voto anônimo logo abaixo</a>.
+    </div>
+  </div>
+</section>
+
+<!-- ================= VOTO ANÔNIMO (secundário · sem contato) ================= -->
+<section class="votosec" id="voto">
+  <div class="wrap">
+    <span class="kicker">Alternativa · 100% anônimo</span>
+    <h2>Não quer deixar contato? Vote assim mesmo.</h2>
+    <p class="sub">
+      Sem nome e sem e-mail: sai daqui apenas o nicho, as UFs e o aceite do preço. O voto entra na
+      leitura de demanda, mas não permite avisar você quando o radar ligar — para isso use o
+      formulário acima.
     </p>
 
     <div class="field">
@@ -894,15 +981,6 @@
       <div class="ufs" id="f-ufs"></div>
     </div>
 
-    <div class="field">
-      <label for="f-contato">Como te avisar quando ligar? <span class="hint" style="display:inline">(opcional)</span></label>
-      <p class="hint">
-        Em branco funciona: o seu voto conta igual e fica 100% anônimo. Só preencha se você
-        <strong>quiser</strong> ser avisado — aí sim usamos para isso e para nada mais.
-      </p>
-      <input type="text" id="f-contato" maxlength="120" autocomplete="email" placeholder="e-mail ou WhatsApp — opcional">
-    </div>
-
     <div class="check">
       <input type="checkbox" id="f-aceite">
       <label for="f-aceite">
@@ -911,15 +989,17 @@
       </label>
     </div>
 
-    <button type="button" class="cta" id="f-btn">Quero por R$149/mês</button>
+    <button type="button" class="cta" id="f-btn">Registrar meu voto anônimo</button>
     <div id="f-out" aria-live="polite"></div>
 
     <div class="note">
-      <strong>Anônimo por construção.</strong> Sem o campo opcional preenchido, saem daqui exatamente
-      quatro coisas: o <strong>nicho</strong>, a <strong>lista de UFs</strong>, o
-      <strong>aceite do preço</strong> e a <strong>origem do link</strong>. Nenhum nome, e-mail,
-      telefone ou CNPJ — e se você escrever um e-mail ou telefone nos campos de texto livre por
-      descuido, ele é <strong>apagado no seu navegador antes do envio</strong>.
+      <strong>Anônimo por construção.</strong> Saem daqui exatamente quatro coisas: o
+      <strong>nicho</strong>, a <strong>lista de UFs</strong>, o <strong>aceite do preço</strong> e a
+      <strong>origem do link</strong>. Nenhum nome, e-mail, telefone ou CNPJ — e se você escrever um
+      e-mail ou telefone nos campos de texto livre por descuido, ele é
+      <strong>apagado no seu navegador antes do envio</strong>. Como não fica contato nenhum, este voto
+      não nos permite avisar você depois: quem quer ser avisado usa o
+      <a href="#quero" style="color:var(--acc)">formulário acima</a>.
       Não há cookie, pixel ou tracker de terceiros nesta página. Nada é cobrado e não existe
       cobrança possível aqui.
     </div>
@@ -940,11 +1020,95 @@
 
 <script>
 /* ====================================================================
-   WIDGET DE INTENÇÃO — 1 POST por submissão para tópico público do ntfy.
-   Payload: nicho + UFs + aceite do preço + origem + ts (+ contato SÓ se
-   a pessoa optar, e nesse caso identificado:true). Texto livre passa por
-   filtro que remove e-mail/telefone antes do envio (defesa contra PII
-   digitada por engano nos campos que não pedem contato).
+   PRÉ-CADASTRO DURÁVEL — POST para o endpoint próprio do fundo.
+   Canal PRIMÁRIO de lead contatável: a gravação é permanente (não expira
+   como o tópico público), então nenhum cadastro se perde entre coletas.
+   Sem JS a página continua funcionando: o <form> é nativo e o endpoint
+   devolve a própria página de obrigado (_form=1).
+==================================================================== */
+(function () {
+  var f    = document.getElementById('lead-form');
+  var btn  = document.getElementById('l-btn');
+  var out  = document.getElementById('l-out');
+  var orig = document.getElementById('l-origem');
+  if (!f || !btn || !out) return;
+
+  try {
+    var o = new URLSearchParams(location.search).get('o');
+    if (o && orig) orig.value = String(o).replace(/[^\w\s.\-]/g, '').trim().slice(0, 60) || 'landing';
+  } catch (e) {}
+
+  function msg(box, titulo, texto, classe) {
+    box.innerHTML = '<div class="' + classe + '"><h3></h3><p></p></div>';
+    box.querySelector('h3').textContent = titulo;
+    box.querySelector('p').textContent = texto;
+  }
+
+  var enviado = false;
+
+  f.addEventListener('submit', function (ev) {
+    if (enviado) { ev.preventDefault(); return; }
+    if (!window.fetch || !window.FormData) return; /* navegador antigo: submit nativo */
+    ev.preventDefault();
+
+    var dados = {};
+    new FormData(f).forEach(function (v, k) {
+      if (k === '_hp' || k === '_form') return;
+      v = String(v).trim();
+      if (v) dados[k] = v.slice(0, 200);
+    });
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    fetch(f.action, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dados)
+    })
+      .then(function (r) {
+        if (!r.ok) throw new Error('http ' + r.status);
+        return r.json();
+      })
+      .then(function () {
+        enviado = true;
+        btn.textContent = 'Cadastro registrado';
+        msg(out, 'Pronto — você está na lista.',
+            'Avisamos por e-mail quando o radar ligar no seu nicho e na sua UF. '
+          + 'Se mudar de ideia, escreva para g001-01@elucidata.vc que apagamos o cadastro.', 'done');
+        var voto = document.getElementById('voto');
+        if (voto) {
+          var aviso = document.getElementById('f-out');
+          var bv = document.getElementById('f-btn');
+          if (bv) { bv.disabled = true; bv.textContent = 'Você já se cadastrou acima'; }
+          if (aviso) msg(aviso, 'Você já registrou o seu interesse',
+                         'O voto anônimo é para quem não deixou contato. Não precisa votar de novo.', 'done');
+        }
+        try { localStorage.setItem('radar_cadastrado', '1'); } catch (e) {}
+      })
+      .catch(function () {
+        btn.disabled = false;
+        btn.textContent = 'Tentar de novo';
+        msg(out, 'Não consegui registrar agora',
+            'Pode ser a sua rede ou um bloqueador de conteúdo. Nada ficou pela metade. '
+          + 'Tente de novo, ou use o formulário em captura.elucidata.vc/f/g001-01.', 'msg');
+      });
+  });
+
+  try {
+    if (localStorage.getItem('radar_cadastrado') === '1') {
+      msg(out, 'Você já se cadastrou neste navegador',
+          'Pode enviar de novo se quiser corrigir algum dado — a gente deduplica pelo e-mail.', 'done');
+    }
+  } catch (e) {}
+})();
+
+/* ====================================================================
+   VOTO ANÔNIMO — 1 POST por submissão para tópico público do ntfy.
+   Canal SECUNDÁRIO, só para quem não quer deixar contato. Payload: nicho
+   + UFs + aceite do preço + origem + ts. Nenhum campo de contato existe
+   aqui; texto livre ainda passa por filtro que remove e-mail/telefone
+   antes do envio (defesa contra PII digitada por engano).
    Sem cookie, sem tracker, sem dependência externa.
 ==================================================================== */
 (function () {
@@ -956,11 +1120,18 @@
   var wrapOutro= document.getElementById('wrap-outro');
   var inOutro  = document.getElementById('f-outro');
   var boxUfs   = document.getElementById('f-ufs');
-  var inCont   = document.getElementById('f-contato');
   var chk      = document.getElementById('f-aceite');
   var btn      = document.getElementById('f-btn');
   var out      = document.getElementById('f-out');
   if (!selNicho || !btn || !out || !boxUfs) return;
+
+  /* quem já deixou contato no formulário durável não vota de novo (anti-duplicata) */
+  try {
+    if (localStorage.getItem('radar_cadastrado') === '1') {
+      btn.disabled = true;
+      btn.textContent = 'Você já se cadastrou acima';
+    }
+  } catch (e) {}
 
   /* --- botões de UF --- */
   var marcadas = {};
@@ -1031,18 +1202,17 @@
       return;
     }
 
-    var contato = String(inCont && inCont.value ? inCont.value : '').trim().slice(0, 120);
     var payload = {
       nicho: selNicho.value,
       nicho_outro: (selNicho.value === 'outro' && inOutro) ? limpaPII(inOutro.value) : '',
       ufs: ufs,
       aceite_preco: true,
       preco: 149,
-      identificado: contato.length > 0,
+      identificado: false,
+      canal: 'voto_anonimo',
       origem: origem(),
       ts: new Date().toISOString()
     };
-    if (contato) { payload.contato = contato; }
 
     enviando = true;
     btn.disabled = true;
@@ -1056,9 +1226,8 @@
         out.innerHTML = '<div class="done"><h3>Registrado — obrigado.</h3><p></p></div>';
         out.querySelector('p').textContent =
           'Seu aceite de R$149/mês entrou na contagem para ' + ufs.join(', ')
-          + (payload.identificado
-              ? '. Como você deixou um contato, avisamos você quando o radar ligar.'
-              : '. Nada além do nicho, das UFs e do aceite saiu daqui — nem contato, como prometido.');
+          + '. Nada além do nicho, das UFs e do aceite saiu daqui — nenhum contato, como prometido. '
+          + 'Por isso mesmo não conseguimos te avisar quando ligar: para ser avisado, use o formulário acima.';
       })
       .catch(function () {
         enviando = false;
